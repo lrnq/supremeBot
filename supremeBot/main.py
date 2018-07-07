@@ -82,6 +82,7 @@ if __init__ == "__main__":
         "zip" : "example",
         "country" : "XX",
         "card" : "XXXX",
+        "number": "XXXXXXXXXXXXXXXX"
         "month" : "XX",
         "year" : "XXXX",
         "ccv" : "XXX"
