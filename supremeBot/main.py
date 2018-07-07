@@ -71,22 +71,22 @@ class supremeBot(object):
 
 if __name__ == "__main__":
     info = {
-        "product" : "Vibrations Rayon Shirt",
-        "color" : "Royal",
+        "product" : "Some Shirt",
+        "color" : "Color",
         "size" : "Medium",
         "category" : "shirts",
         "namefield" : "example",
         "emailfield" : "example@example.com",
-        "phonefield" : "12345678",
+        "phonefield" : "XXXXXXXXXX",
         "addressfield" : "example road",
-        "city" : "KOE",
-        "zip" : "1234",
-        "country" : "DK",
-        "card" : "visa",
-        "number": "1234567812345671",
-        "month" : "07",
-        "year" : "2020",
-        "ccv" : "123"
+        "city" : "example",
+        "zip" : "XXXXX",
+        "country" : "XX",
+        "card" : "XXXX",
+        "number": "XXXXXXXXXXXXXXXX",
+        "month" : "XX",
+        "year" : "XXXX",
+        "ccv" : "XXXX"
     }
     bot = supremeBot(**info)
     bot.main()
