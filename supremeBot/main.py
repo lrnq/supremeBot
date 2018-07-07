@@ -28,7 +28,7 @@ class supremeBot(object):
             temp_tuple.append((link['href'], link.text))
 
         for i in temp_tuple:
-            if i[1] == product or i[1] == color:
+            if i[1] == self.info['product'] or i[1] == self.info['color']:
                 temp_link.append(i[0])
 
         self.final_link = list(
