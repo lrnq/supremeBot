@@ -11,7 +11,7 @@ class supremeBot(object):
         self.info = info
 
     def initializeBrowser(self):
-        self.path = {'executable_path': './chromedriver'}
+        path = {'executable_path': './chromedriver'}
         self.b = Browser('chrome', **path)
 
     def findProduct(self):
@@ -28,7 +28,7 @@ class supremeBot(object):
             temp_tuple.append((link['href'], link.text))
 
         for i in temp_tuple:
-            if i[1] == product or i[1] == color:
+            if i[1].lower() == self.info['product'].lower() or i[1] == self.info['color'].lower():
                 temp_link.append(i[0])
 
         self.final_link = list(
@@ -39,7 +39,7 @@ class supremeBot(object):
             "{}{}{}".format(
                 self.base_url, self.shop, str(
                     self.final_link)))
-        browser.find_option_by_text(size).click()
+        browser.find_option_by_text(self.info['size']).click()
         browser.find_by_value('add to basket').click()
 
         time.sleep(0.5)
@@ -62,30 +62,30 @@ class supremeBot(object):
         browser.find_by_css('.terms').click()
         browser.find_by_value("process payment").click()
 
-    def run(self):
+    def main(self):
         self.initializeBrowser()
         self.findProduct()
         self.visitSite()
 
 
-if __init__ == "__main__":
+if __name__ == "__main__":
     info = {
-        "product" : "example",
-        "color" : "example",
-        "size" : "example",
-        "category" : "example",
+        "product" : "Vibrations Rayon Shirt",
+        "color" : "Royal",
+        "size" : "Medium",
+        "category" : "shirts",
         "namefield" : "example",
         "emailfield" : "example@example.com",
-        "phonefield" : "12345678910",
+        "phonefield" : "12345678",
         "addressfield" : "example road",
-        "city" : "example",
-        "zip" : "example",
-        "country" : "XX",
-        "card" : "XXXX",
-        "number": "XXXXXXXXXXXXXXXX"
-        "month" : "XX",
-        "year" : "XXXX",
-        "ccv" : "XXX"
+        "city" : "KOE",
+        "zip" : "1234",
+        "country" : "DK",
+        "card" : "visa",
+        "number": "1234567812345671",
+        "month" : "07",
+        "year" : "2020",
+        "ccv" : "123"
     }
     bot = supremeBot(**info)
     bot.main()
