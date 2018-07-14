@@ -42,8 +42,9 @@ class supremeBot(object):
                     self.final_link)))
         self.b.find_option_by_text(self.info['size']).click()
         self.b.find_by_value('add to basket').click()
-
-        time.sleep(0.5)
+        
+    def checkoutFunc(self):
+        
         self.b.visit("{}{}".format(self.base_url, self.checkout))
 
         self.b.fill("order[billing_name]", self.info['namefield'])
@@ -67,6 +68,7 @@ class supremeBot(object):
         self.initializeBrowser()
         self.findProduct()
         self.visitSite()
+        self.checkoutFunc()
 
 
 if __name__ == "__main__":
