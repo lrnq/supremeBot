@@ -1,3 +1,4 @@
+"Doc string to satisfy pylinter"
 import requests
 import bs4 as bs
 from splinter import *
@@ -11,8 +12,7 @@ class supremeBot(object):
         self.info = info
 
     def initializeBrowser(self):
-        path = {'executable_path': './chromedriver'}
-        self.b = Browser('chrome', **path)
+        self.b = Browser()
 
     def findProduct(self):
         r = requests.get(
@@ -42,9 +42,9 @@ class supremeBot(object):
                     self.final_link)))
         self.b.find_option_by_text(self.info['size']).click()
         self.b.find_by_value('add to basket').click()
-        
+
     def checkoutFunc(self):
-        
+
         self.b.visit("{}{}".format(self.base_url, self.checkout))
 
         self.b.fill("order[billing_name]", self.info['namefield'])
@@ -53,7 +53,7 @@ class supremeBot(object):
 
         self.b.fill("order[billing_address]", self.info['addressfield'])
         self.b.fill("order[billing_city]", self.info['city'])
-        self.b.fill("order[billing_zip]", self.info['zipfield'])
+        self.b.fill("order[billing_zip]", self.info['zip'])
         self.b.select("order[billing_country]", self.info['country'])
 
         self.b.select("credit_card[type]", self.info['card'])
@@ -72,23 +72,23 @@ class supremeBot(object):
 
 
 if __name__ == "__main__":
-    info = {
-        "product" : "Some Shirt",
-        "color" : "Color",
-        "size" : "Medium",
-        "category" : "shirts",
-        "namefield" : "example",
-        "emailfield" : "example@example.com",
-        "phonefield" : "XXXXXXXXXX",
-        "addressfield" : "example road",
-        "city" : "example",
-        "zip" : "XXXXX",
-        "country" : "XX",
-        "card" : "XXXX",
+    INFO = {
+        "product": "Vampire Hooded Sweatshirt",
+        "color": "Black",
+        "size": "Medium",
+        "category": "sweatshirts",
+        "namefield": "example",
+        "emailfield": "example@example.com",
+        "phonefield": "XXXXXXXXXX",
+        "addressfield": "example road",
+        "city": "example",
+        "zip": "XXXXX",
+        "country": "DK",
+        "card": "visa",
         "number": "XXXXXXXXXXXXXXXX",
-        "month" : "XX",
-        "year" : "XXXX",
-        "ccv" : "XXXX"
+        "month": "XX",
+        "year": "XXXX",
+        "ccv": "XXXX"
     }
-    bot = supremeBot(**info)
-    bot.main()
+    BOT = supremeBot(**INFO)
+    BOT.main()
