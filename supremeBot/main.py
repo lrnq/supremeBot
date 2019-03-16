@@ -27,10 +27,11 @@ class supremeBot(object):
 
         for link in soup.find_all('a', href=True):
             temp_tuple.append((link['href'], link.text))
-
+        print(temp_tuple)
         for i in temp_tuple:
             if i[1] == self.info['product'] or i[1] == self.info['color']:
                 temp_link.append(i[0])
+        print(temp_link)
 
         self.final_link = list(
             set([x for x in temp_link if temp_link.count(x) == 2]))[0]
@@ -73,10 +74,10 @@ class supremeBot(object):
 
 if __name__ == "__main__":
     INFO = {
-        "product": "Vampire Hooded Sweatshirt",
+        "product": "S/S Pocket Tee",
         "color": "Black",
         "size": "Medium",
-        "category": "sweatshirts",
+        "category": "tops_sweaters",
         "namefield": "example",
         "emailfield": "example@example.com",
         "phonefield": "XXXXXXXXXX",
