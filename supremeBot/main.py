@@ -27,11 +27,9 @@ class supremeBot(object):
 
         for link in soup.find_all('a', href=True):
             temp_tuple.append((link['href'], link.text))
-        print(temp_tuple)
         for i in temp_tuple:
             if i[1] == self.info['product'] or i[1] == self.info['color']:
                 temp_link.append(i[0])
-        print(temp_link)
 
         self.final_link = list(
             set([x for x in temp_link if temp_link.count(x) == 2]))[0]
@@ -63,7 +61,7 @@ class supremeBot(object):
         self.b.select("credit_card[year]", self.info['year'])
         self.b.fill("credit_card[vval]", self.info['ccv'])
         self.b.find_by_css('.terms').click()
-        self.b.find_by_value("process payment").click()
+        #self.b.find_by_value("process payment").click()
 
     def main(self):
         self.initializeBrowser()
@@ -83,13 +81,13 @@ if __name__ == "__main__":
         "phonefield": "XXXXXXXXXX",
         "addressfield": "example road",
         "city": "example",
-        "zip": "XXXXX",
-        "country": "DK",
+        "zip": "72046",
+        "country": "GB",
         "card": "visa",
-        "number": "XXXXXXXXXXXXXXXX",
-        "month": "XX",
-        "year": "XXXX",
-        "ccv": "XXXX"
+        "number": "1234123412341234",
+        "month": "09",
+        "year": "2020",
+        "ccv": "123"
     }
     BOT = supremeBot(**INFO)
     BOT.main()
