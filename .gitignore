@@ -1,0 +1,6 @@
+__pycache__
+./supremeBot/__pycache__/
+*.pyo
+*.pyc
+./supremeBot/geckodriver.log
+
