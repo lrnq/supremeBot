@@ -1,7 +1,8 @@
-"Doc string to satisfy pylinter"
+#!/usr/bin/env python3
 import requests
 import bs4 as bs
-from splinter import *
+from splinter import Browser
+import helpers
 
 
 class supremeBot(object):
@@ -12,7 +13,14 @@ class supremeBot(object):
         self.info = info
 
     def initializeBrowser(self):
-        self.b = Browser()
+        driver = self.info["driver"]
+        path = helpers.get_driver_path(driver)
+        if driver == "geckodriver":
+            self.b = Browser()
+        elif driver == "chromedriver":
+            executable_path = {"executable_path": path}
+            self.b = Browser('chrome', **executable_path)
+
 
     def findProduct(self):
         r = requests.get(
@@ -72,6 +80,7 @@ class supremeBot(object):
 
 if __name__ == "__main__":
     INFO = {
+        "driver": "geckodriver",
         "product": "S/S Pocket Tee",
         "color": "Black",
         "size": "Medium",
