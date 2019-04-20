@@ -3,4 +3,5 @@ Use this bot at your own risk (Supreme may not accept orders from bots as of SS1
 The bot can be used rather than you having to pay 100$ for one.
 
 # TODO:
-- [ ] Add OS check and load corresponding webdrivers. (In progress)
+- [x] Add OS check and load corresponding webdrivers.
+- [ ] Script to add drivers to path.
