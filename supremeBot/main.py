@@ -75,12 +75,6 @@ class supremeBot(object):
         self.b.find_by_css('.terms').click()
         #self.b.find_by_value("process payment").click()
 
-    def main(self):
-        self.initializeBrowser()
-        self.findProduct()
-        self.visitSite()
-        self.checkoutFunc()
-
 
 if __name__ == "__main__":
     INFO = {
@@ -109,8 +103,8 @@ if __name__ == "__main__":
     counter = 1
     while not found_product and counter < max_iter:
         found_product = BOT.findProduct()
+        print("Tried ", counter, " times")
         counter += 1
-        print(counter)
     if not found_product:
         raise Exception("Couldn't find product. Sry bruh")
     BOT.initializeBrowser()
