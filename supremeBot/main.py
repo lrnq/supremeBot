@@ -23,24 +23,28 @@ class supremeBot(object):
 
 
     def findProduct(self):
-        r = requests.get(
-            "{}{}{}".format(
-                self.base_url,
-                self.shop,
-                self.info['category'])).text
-        soup = bs.BeautifulSoup(r, 'lxml')
+        try:
+            r = requests.get(
+                "{}{}{}".format(
+                    self.base_url,
+                    self.shop,
+                    self.info['category'])).text
+            soup = bs.BeautifulSoup(r, 'lxml')
 
-        temp_tuple = []
-        temp_link = []
+            temp_tuple = []
+            temp_link = []
 
-        for link in soup.find_all('a', href=True):
-            temp_tuple.append((link['href'], link.text))
-        for i in temp_tuple:
-            if i[1] == self.info['product'] or i[1] == self.info['color']:
-                temp_link.append(i[0])
+            for link in soup.find_all('a', href=True):
+                temp_tuple.append((link['href'], link.text))
+            for i in temp_tuple:
+                if i[1] == self.info['product'] or i[1] == self.info['color']:
+                    temp_link.append(i[0])
 
-        self.final_link = list(
-            set([x for x in temp_link if temp_link.count(x) == 2]))[0]
+            self.final_link = list(
+                set([x for x in temp_link if temp_link.count(x) == 2]))[0]
+            return True
+        except:
+            return False
 
     def visitSite(self):
         self.b.visit(
@@ -67,7 +71,7 @@ class supremeBot(object):
         self.b.fill("credit_card[cnb]", self.info['number'])
         self.b.select("credit_card[month]", self.info['month'])
         self.b.select("credit_card[year]", self.info['year'])
-        self.b.fill("credit_card[vval]", self.info['ccv'])
+        self.b.fill("credit_card[ovv]", self.info['ccv'])
         self.b.find_by_css('.terms').click()
         #self.b.find_by_value("process payment").click()
 
@@ -81,10 +85,10 @@ class supremeBot(object):
 if __name__ == "__main__":
     INFO = {
         "driver": "geckodriver",
-        "product": "S/S Pocket Tee",
-        "color": "Black",
+        "product": "Thermal Zip Up Hooded Sweatshirt",
+        "color": "Tangerine",
         "size": "Medium",
-        "category": "tops_sweaters",
+        "category": "sweatshirts",
         "namefield": "example",
         "emailfield": "example@example.com",
         "phonefield": "XXXXXXXXXX",
@@ -99,4 +103,16 @@ if __name__ == "__main__":
         "ccv": "123"
     }
     BOT = supremeBot(**INFO)
-    BOT.main()
+    # Flag to set to true if you want to reload the page continously close to drop.
+    found_product = False
+    max_iter = 10
+    counter = 1
+    while not found_product and counter < max_iter:
+        found_product = BOT.findProduct()
+        counter += 1
+        print(counter)
+    if not found_product:
+        raise Exception("Couldn't find product. Sry bruh")
+    BOT.initializeBrowser()
+    BOT.visitSite()
+    BOT.checkoutFunc()
