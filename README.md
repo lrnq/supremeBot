@@ -1,5 +1,5 @@
 # Outdated
-This bot was one of the first things I wrote in Python back in the beginning of high school. It is super outdated and the Supreme shop has had many updates since then.  
+Once in a while I get a message regarding this bot and issues with getting it to run. This bot was one of the first things I wrote in Python back in the beginning of high school. It is super outdated and the Supreme shop has had many updates since then.  
 
 # supremeBot
 Use this bot at your own risk (Supreme may not accept orders from bots as of SS18, and might ban your ip). 
